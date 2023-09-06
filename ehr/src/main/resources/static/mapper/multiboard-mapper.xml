@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ehr.web.multiboard.MultiboardDAO">
+<select id="list" parameterType="Integer" resultType="Map">
+		SELECT *, (SELECT COUNT(*) FROM mbboardview WHERE mbboard = #{board}) AS count
+		FROM (SELECT CAST(@ROWNUM:=@ROWNUM+1 AS UNSIGNED) AS rowNum, m.*
+		FROM mbboardview m, (SELECT @ROWNUM:=0) AS R
+		WHERE m.mbboard=#{board}
+		ORDER BY m.mbno ASC) mm
+		ORDER BY mm.mbno DESC
+		LIMIT 0, 10
+	</select>
+
+	<insert id="mbwrite" parameterType="Map">
+
+	  INSERT INTO multiboard (mbtitle, mbcontent, mbboard, eno, mbread, mbdel)
+      VALUES(#{mbtitle}, #{mbcontent}, #{mbboard}, (SELECT eno FROM employee WHERE eid=#{eid}), 1 ,1)
+
+		<selectKey resultType="Integer" keyProperty="mbno" order="AFTER">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+
+	</insert>
+	
+	<select id="mbdetail" parameterType="Integer" resultType="Map">
+		SELECT mbno, mbtitle, mbcontent, mbdate, mbread, mbboard, ename
+		FROM mbboardview
+		where mbno=#{mbno}
+	</select>
+	
+	<select id="boardList" resultType="Map">
+		select * from setupboard order by sbno asc
+	
+	</select>
+	
+	<select id="sbgroupname" resultType="Map" parameterType="Integer">
+		select sbgroupname from setupboard
+		where sbgroup=#{board}
+	</select>
+	
+</mapper>

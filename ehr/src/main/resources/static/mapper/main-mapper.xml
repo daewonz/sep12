@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ehr.web.main.MainDAO">
+<select id="IDresult" parameterType="Map" resultType="Integer">
+SELECT COUNT(*)
+FROM employee
+WHERE eid = #{id}
+
+</select>
+<select id="PWresult" parameterType="Map" resultType="Integer">
+SELECT COUNT(*)
+FROM employee
+WHERE eid = #{id} AND epw = #{pw}
+</select>
+
+<select id="loginCheck" parameterType="Map" resultType="Map">
+SELECT edept, eno, ename, ecount
+FROM employee
+WHERE eid = #{id} AND epw = #{pw}
+</select>
+<select id="eCount" parameterType="Map" resultType="Integer">
+SELECT ecount
+FROM employee
+WHERE eid = #{id}
+</select>
+<update id="eCountReset" parameterType="Map">
+UPDATE employee SET ecount = 0
+WHERE eid =#{id}
+</update>
+<update id="eCountPlus" parameterType="Map">
+UPDATE employee SET ecount = ecount+1
+WHERE eid =#{id}
+</update>
+<select id="login" parameterType="String" resultType="Map">
+SELECT *
+FROM employee
+WHERE eid=#{eid}
+</select>
+<update id="ecountPW" parameterType="Map">
+UPDATE employee SET epw = #{uuid}
+WHERE eid = #{id}
+</update>
+
+<insert id="join" parameterType="Map">
+		INSERT into employee (eid, epw, ename, errn, eemail, ecertificate, edept, egrade, ehiredate, eaddr, ebirth, egender, ephoneno, ebank, eaccount, eimg)
+		values(#{eid}, #{epw}, #{ename}, #{errn}, #{eemail}, #{ecertificate}, #{edept}, #{egrade}, #{ehiredate}, #{eaddr}, #{ebirth}, #{egender}, #{ephoneno}, #{ebank}, #{eaccount}, #{realFile})
+	</insert>
+	
+	<select id="eidcheck" parameterType="String" resultType="Integer">
+		select count(*) from employee
+		where eid=#{eid}
+	</select>
+	
+	<select id="eemailcheck" parameterType="String" resultType="Integer">
+		select count(*) from employee
+		where eemail=#{eemail}
+	</select>
+	
+
+</mapper>

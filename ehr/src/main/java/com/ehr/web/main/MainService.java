@@ -1,5 +1,6 @@
 package com.ehr.web.main;
 
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -61,6 +62,11 @@ public int eidcheck(String eid) {
 
 public int eemailcheck(String eemail) {
 	return mainDAO.eemailcheck(eemail);
+}
+
+public List<Map<String, Object>> newMember() {
+	// TODO Auto-generated method stub
+	return mainDAO.newMember();
 }
 
 

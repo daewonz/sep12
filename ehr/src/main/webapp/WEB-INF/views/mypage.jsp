@@ -8,7 +8,8 @@
 </head>
 <body>
 <h1>${list.ename }님 정보 페이지</h1><br>
-<img src="./upload/${list.eimg}"> <br>
+<img src="./upload/${list.eimg}" width="100px" height="100px"> <br>
+<button>사진 변경하기</button><br><br>
 사원번호 : ${list.eid} <br>
 나이 : ${list.eage }<br>
 생일 : ${ebirth} <br>

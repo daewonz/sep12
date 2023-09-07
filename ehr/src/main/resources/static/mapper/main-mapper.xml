@@ -57,6 +57,12 @@ WHERE eid = #{id}
 		select count(*) from employee
 		where eemail=#{eemail}
 	</select>
-	
+	<select id="newMember" resultType="Map">
+	SELECT eimg, edept, ename, ehiredate
+	FROM employee
+	ORDER BY ehiredate
+	DESC
+	LIMIT 0,2
+	</select>
 
 </mapper>

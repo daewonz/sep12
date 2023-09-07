@@ -1,5 +1,6 @@
 package com.ehr.web.main;
 
+import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
@@ -28,5 +29,7 @@ public interface MainDAO {
 	int eidcheck(String eid);
 
 	int eemailcheck(String eemail);
+
+	List<Map<String, Object>> newMember();
 
 }

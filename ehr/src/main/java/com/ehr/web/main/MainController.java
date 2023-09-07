@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
@@ -49,6 +50,12 @@ public String main(HttpSession session, Model model) {
 	if(session.getAttribute("eid") != null && session.getAttribute("eid") != "") {
 		String eid = String.valueOf(session.getAttribute("eid"));
 		Map<String, Object> result = mainService.login(eid);
+		List<Map<String, Object>> newMember = mainService.newMember();
+		System.out.println(String.valueOf(newMember.get(0).get("ehiredate")).substring(0, 10));
+		newMember.get(0).put("ehiredate", String.valueOf(newMember.get(0).get("ehiredate")).substring(0, 10));
+		newMember.get(1).put("ehiredate", String.valueOf(newMember.get(1).get("ehiredate")).substring(0, 10));
+		System.out.println(newMember);
+		model.addAttribute("newM", newMember);
 	    model.addAttribute("ehiredate", String.valueOf(result.get("ehiredate")).substring(0, 10));
 		model.addAttribute("list", result);
 		return "/main";
@@ -156,6 +163,10 @@ public String join(@RequestParam(value="eimg",required = false) MultipartFile ei
 		System.out.println(realFileName);
 		map.put("realFile", realFileName);
 		m.addAttribute("realFile",realFileName);
+	}
+	System.out.println("이미지가 비어있나요? : "+eimg.isEmpty());
+	if(eimg.isEmpty()) {
+		map.put("realFile", "noimg2.png");
 	}
 	
 	mainService.join(map);

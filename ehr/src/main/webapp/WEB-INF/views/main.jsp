@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,10 +18,11 @@
 <div class="layout">
     <article>
 	<h1>메인페이지</h1>
+	
   <div class="flexbox">
     <div class="item">
     <br><br>
-    <img src="./upload/${list.eimg}"> <br>
+    <img src="./upload/${list.eimg}" width="100px" height="100px"><br>
     <div class="nameset1">${sessionScope.ename }님<br></div>
     <br>
     <div class="myinfo"> 내정보 | 비밀번호변경 </div>
@@ -45,17 +47,24 @@
     </div>
     <div class="item">
      <div class="nameset1">신규입사자<br></div>
-
     <div class="slideshow-container">
 
 <div class="mySlides fade">
   <div class="numbertext">1 / 2</div>
-  <img class="pic" src="/img/notice.jpg" style="width:300px" height="300px">
+  <img class="pic" src="./upload/${newM[0].eimg }" style= width:100px" height="100px">
+   <br><br><br>
+    <div class="nameset2"> ${newM[0].edept }<br></div>
+    <div class="nameset3"> ${newM[0].ename }<br></div>
+    <div class="nameset4">${newM[0].ehiredate } 입사</div>
 </div>
 
 <div class="mySlides fade">
   <div class="numbertext">2 / 2</div>
-  <img class="pic" src="/img/notice.jpg" style="width:300px" height="300px">
+  <img class="pic" src="./upload/noimg2.png" style="width:100px" height="100px">
+  <br><br><br> 
+    <div class="nameset2"> ${newM[1].edept }<br></div>
+    <div class="nameset3"> ${newM[1].ename }<br></div>
+    <div class="nameset4">${newM[1].ehiredate } 입사</div>
 </div>
 
 
@@ -63,13 +72,13 @@
 <a class="next" onclick="plusSlides(1)">&#10095;</a>
 
 </div>
-    <div class="nameset2"> ${list.edept}팀<br></div>
-    <div class="nameset3"> ${list.ename}<br></div>
-    <div class="nameset4">${ehiredate } 입사</div>
+
     <br><br>
     </div>
   </div>
 </article>
+
+
 </div>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -82,7 +91,8 @@
 <button onclick="location.href='./join'">사원등록</button>
 <button onclick="location.href='./multiboard'">멀티보드로</button>
 
-<script type="text/javascript">
+
+
 <script type="text/javascript">
 var slideIndex = 1;
 showSlides(slideIndex);
@@ -110,6 +120,6 @@ function showSlides(n) {
 	  dots[slideIndex-1].className += " active";
 	}
 </script>
-</script>
+
 </body>
 </html>

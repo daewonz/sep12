@@ -219,6 +219,20 @@ public String logout(HttpSession session) {
    }
    return "redirect:/";
 }
+
+@GetMapping("/findID")
+public String findID() {
+	return "findID";
+}
+@GetMapping("/findPW")
+public String findPW() {
+	return "findPW";
+}
+
+
+
+
+
 }
 //컨트롤러 끝
 

@@ -10,7 +10,13 @@
 <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
 <script type="text/javascript">
 $(function(){
+	$(".findPW").hide();
+	$(".findID").hide();
+	
+	
 	$(".loginBtn").click(function(){
+		$(".findPW").hide();
+		$(".findID").hide();
 		let id = $(".id").val();
 		let pw = $(".pw").val();
 
@@ -19,6 +25,7 @@ $(function(){
 		$(".idInfo").text("");
 		if($(".id")==null||$(".id").val().length != 5){
 			alert("사번은 5자리여야 합니다.");
+			$(".id").val("");
 			$(".idInfo").css("color","red");
 			$(".idInfo").text("올바른 사번을 입력해주세요");			
 			$(".id").focus();
@@ -26,6 +33,7 @@ $(function(){
 		}
 		if( $(".pw").length == null ||$(".pw").val().length < 5){
 			alert("비밀번호은 5자리 이상입니다.");
+			$(".pw").val("");
 			$(".pwInfo").css("color","red");
 			$(".pwInfo").text("올바른 비밀번호를 입력해주세요");			
 			$(".pw").focus();
@@ -67,14 +75,18 @@ $(function(){
 		            $(".idInfo").css("color","red");
 		            $(".idInfo").text("아이디를 다시 확인해주세요.");            
 		            $(".id").focus();
+		            $(".pwInfo").text("아이디를 잊으셨나요?");
+		            $(".findID").show();
 		        }
 		        
 		        
 		        if(data.result == 0){
 		            alert("비밀번호를 잘못 입력하셨습니다.");
 		            $(".idInfo").css("color","red");
-		            $(".idInfo").text("비밀번호를 "+ecount+"/5 회 잘못 입력했습니다. 5회 이상 초과하면 계정이 잠깁니다.");            
+		            $(".idInfo").text("비밀번호를 "+ecount+"/5 회 잘못 입력했습니다. 5회를 초과하면 계정이 잠깁니다.");            
 		            $(".id").focus();
+		            $(".pwInfo").text("비밀번호를 잊으셨나요?");
+		            $(".findPW").show();
 		            if(ecount > 5){
 		                $(".idInfo").css("color","red");
 		                $(".idInfo").text("비밀번호를 5회 초과하여 잘못 입력했습니다. 관리자에게 문의하세요.");    
@@ -100,10 +112,10 @@ $(function(){
 
 <h1>로그인</h1>
 
-아이디<input type="text" class="id" name="eid" placeholder="아이디"><br>
+사번<input type="text" class="id" name="eid" placeholder="사번"><br>
 <span class="idInfo"></span><br>
 비밀번호<input type="password" class="pw" name="epw" placeholder="비밀번호"><br>
-<span class="pwInfo"></span><br>
+<span class="pwInfo"></span><a class="findID" href="./findID">사번 찾기</a><a class="findPW" href="./findPW">비밀번호 찾기</a><br>
 <button class="loginBtn" type="button">전송</button>
 
 </body>

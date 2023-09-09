@@ -7,6 +7,7 @@
 			<div class="menu-item" onclick="url('')"><i class="xi-bell-o xi-2x"></i><br>공지사항</div>
 			<div class="menu-item logout" ><i class="xi-flag-o xi-2x"></i><br>로그아웃</div>
 		</div>
+
 		<script>function url(url){location.href="./"+url;}</script>
 		<script type="text/javascript">
  $(function(){

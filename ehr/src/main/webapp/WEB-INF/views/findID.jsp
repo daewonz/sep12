@@ -83,7 +83,8 @@ $(function(){
 		<form action="./findID" method="post"></form>
 		사내 이메일을 입력해주세요.
 		<div class="zzz">
-		<input type="text" class="findID" name="findID" placeholder="이메일을 입력해주세요">
+		이름 : <input type="text" class="findID" name="name" placeholder="이름을 입력해주세요"><br>
+		이메일 앞 아이디 : <input type="text" class="findID" name="findID" placeholder="이메일 앞 아이디를 입력해주세요">
 
 		<div>
 		<button type="submit" class="fbtn">아이디 찾기</button>

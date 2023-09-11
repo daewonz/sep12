@@ -17,26 +17,26 @@ $(function(){
 	$(".loginBtn").click(function(){
 		$(".findPW").hide();
 		$(".findID").hide();
-		let id = $(".id").val();
-		let pw = $(".pw").val();
+		let id = $(".signin_id").val();
+		let pw = $(".signin_pw").val();
 
 		
 		$(".pwInfo").text("");
 		$(".idInfo").text("");
-		if($(".id")==null||$(".id").val().length != 5){
+		if($(".signin_id")==null||$(".signin_id").val().length != 5){
 			alert("사번은 5자리여야 합니다.");
-			$(".id").val("");
+			$(".signin_id").val("");
 			$(".idInfo").css("color","red");
 			$(".idInfo").text("올바른 사번을 입력해주세요");			
-			$(".id").focus();
+			$(".signin_id").focus();
 			return false;
 		}
-		if( $(".pw").length == null ||$(".pw").val().length < 5){
+		if( $(".signin_pw").length == null ||$(".signin_pw").val().length < 5){
 			alert("비밀번호은 5자리 이상입니다.");
-			$(".pw").val("");
+			$(".signin_pw").val("");
 			$(".pwInfo").css("color","red");
 			$(".pwInfo").text("올바른 비밀번호를 입력해주세요");			
-			$(".pw").focus();
+			$(".signin_pw").focus();
 			return false;
 		}
 				
@@ -51,7 +51,7 @@ $(function(){
 		    	
 		    	if(data.result == 1 && data.ecount > 5){
 		            $(".idInfo").css("color","red");
-		            $(".idInfo").text("비밀번호를 5회 초과하여 잘못 입력했습니다. 관리자에게 문의하세요.");
+		            $(".idInfo").text("비밀번호를 5회 초과하여 잘못 입력했습니다. 관리팀(0000-0000)에 문의하세요.");
 		            $(".id").focus();
 		            $(".loginBtn").hide();
 		            return false;
@@ -73,9 +73,9 @@ $(function(){
 		        if(data.IDresult == 0){
 		            alert("일치하는 아이디가 없습니다.");
 		            $(".idInfo").css("color","red");
-		            $(".idInfo").text("아이디를 다시 확인해주세요.");            
+		            $(".idInfo").text("사번을 다시 확인해주세요.");            
 		            $(".id").focus();
-		            $(".pwInfo").text("아이디를 잊으셨나요?");
+		            $(".pwInfo").text("사번을 잊으셨나요?");
 		            $(".findID").show();
 		        }
 		        
@@ -89,7 +89,7 @@ $(function(){
 		            $(".findPW").show();
 		            if(ecount > 5){
 		                $(".idInfo").css("color","red");
-		                $(".idInfo").text("비밀번호를 5회 초과하여 잘못 입력했습니다. 관리자에게 문의하세요.");    
+		                $(".idInfo").text("비밀번호를 5회 초과하여 잘못 입력했습니다. 관리팀(0000-0000)에 문의하세요.");    
 		                $(".loginBtn").hide();
 		            }
 		        }
@@ -106,17 +106,35 @@ $(function(){
 });
 
 </script>
-
+<link rel="stylesheet" href="../css/login.css">
 </head>
 <body>
+<body>
 
-<h1>로그인</h1>
-
-사번<input type="text" class="id" name="eid" placeholder="사번"><br>
-<span class="idInfo"></span><br>
-비밀번호<input type="password" class="pw" name="epw" placeholder="비밀번호"><br>
-<span class="pwInfo"></span><a class="findID" href="./findID">사번 찾기</a><a class="findPW" href="./findPW">비밀번호 찾기</a><br>
-<button class="loginBtn" type="button">전송</button>
+   <div class="nav_container">
+      <div class="content_signin">
+         <div class="signin_selection_group">
+            <div class="login_form">
+               <div class="signin_swiper" id="otp">
+                  <div class="signin-section">
+                     <div>
+                        <h2 class="signin_title">게시판 로그인</h2>
+                        <div class="signin-section">
+                           <input type="text" class="signin_id" name="eid" placeholder="아이디">
+                           <span class="idInfo"></span><br>
+                           <input type="password" class="signin_pw" name="epw" placeholder="비밀번호">
+                          <span class="pwInfo"></span><a class="findID" href="./findID">사번 찾기</a><a class="findPW" href="./findPW">비밀번호 찾기</a><br>
+                          <br><br><br><br><br><br>
+                          <button class="loginBtn" type="button">로그인</button>
+                           <span id="msg"></span>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
 
 </body>
 </html>

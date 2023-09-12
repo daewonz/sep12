@@ -1,0 +1,198 @@
+@charset "UTF-8";
+
+.nav_container {
+    position: relative;
+    display: flex;
+    width: 106.667em;
+    min-width: 106.667em;
+    padding: 0 1.25em;
+    margin: 1.25em auto 0;
+}
+
+.content_join{
+	position: relative;
+	width: 100%;
+	min-height: auto;
+	border-radius: 2px;
+	padding: 1.25em 15em 2.5em;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+div {
+	display: block;
+}
+
+.board_head {
+	position: relative;
+	display: flex;
+	align-items: center;
+	padding: 0.417em 0;
+	border-bottom: 1px solid #E2E2E2;
+}
+
+.board_name h2 {
+	font-size: 1.5em;
+	letter-spacing: -0.5px;
+}
+
+.board_name {
+	display: flex;
+	align-items: center;
+	padding: 0.833em 0;
+}
+
+.board_name h2 {
+	font-size: 1.5em;
+	letter-spacing: -0.5px;
+}
+
+h1, h2, h3, h4 {
+	font-weight: 400;
+}
+
+.form_title {
+	font-size: 1.333em;
+	color: #333;
+	font-weight: 500;
+	letter-spacing: -0.2px;
+	padding: 0.75em 0;
+	margin: 0.625em 0 0;
+	border-bottom: 1px solid #ccc;
+}
+
+input {
+	background-color: #fff;
+}
+
+.reg_text{
+	font-size: 1.333em;
+	font-weight: 500;
+}
+
+.form_title .title_tip {
+
+	position: relative;
+	top: -0.083em;
+	font-size: .75em;
+	color: #FF5722;
+	padding: 0 0 0 0.417em;
+}
+
+.form.topline {
+	border-top: 0;
+}
+
+.form table {
+	width: 100%;
+}
+
+.form {
+	padding: 1.667em 0.833em;
+	border: 1px solid #ddd;
+}
+
+.form th.id {
+	width: 16.25em;
+}
+
+.form th {
+	width: auto;
+	height: 4.167em;
+	font-weight: 500;
+	text-align: right;
+	padding: 0.75em 0.833em;
+}
+
+.form th.id {
+	width: 16.25em;
+}
+
+.form th {
+	width: auto;
+	height: 4.167em;
+	font-weight: 500;
+	text-align: right;
+	padding: 0.75em 0.833em;
+}
+
+.form th, .form td {
+	color: #333;
+	vertical-align: top;
+}
+
+.form td {
+    width: auto;
+    text-align: left;
+    padding: 0 0 0.833em;
+}
+.form input[type="text"], .form input[type="password"], .form input[type="date"],
+	.form input[type="email"], .form input[type="file"]
+	{
+	width: 100%;
+	max-width: 16.667em;
+	height: 2.5em;
+	color: #333;
+	padding: 0.583em 0.833em;
+}
+
+input[type="text"], input[type="password"], input[type="date"], input[type="email"],
+	input[type="file"]{
+	border-radius: 2px;
+	border: 1px solid rgba(0, 0, 0, 0.15);
+	outline: none;
+	-webkit-appearance: none;
+	vertical-align: middle;
+}
+
+input {
+	background-color: #fff;
+}
+
+.form .alert, .form .completed, .form .tip, .form .red, .form .orange, .form .blue, .form .green {
+    display: block;
+    color: #D43F3A;
+    line-height: 1.4;
+    margin: 0.833em 0 1.25em;
+}
+
+input, optgroup, select{
+    font: inherit;
+    color: inherit;
+    border: 0;
+    border-radius: 0;
+    margin: 0;
+    background-color: inherit;
+}
+
+.egrade {
+	margin: 7px;
+	padding: 0px;
+	border-radius: 2px;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+}
+
+.edept {
+	margin: 7px;
+	padding: 0px;
+	border-radius: 2px;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+}
+
+.ebank{
+	margin: 7px;
+	padding: 0px;
+	border-radius: 2px;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+}
+
+.egender{
+	margin: 7px;
+	padding: 0px;
+	border-radius: 2px;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+}
+
+

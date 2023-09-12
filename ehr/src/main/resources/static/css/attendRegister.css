@@ -1,0 +1,36 @@
+@charset "UTF-8";
+.atList{	
+	width: 1000px;
+	height: 800px;
+	margin: 0 auto;
+}
+table{
+	border-collapse: collapse;
+	margin: 10px 0px;
+	text-align: center;
+	table-layout: fixed;
+}
+th{
+	border-bottom: 1px solid #BDBDBD;
+	width: 200px;
+	height: 20px;
+	padding: 10px;
+}
+td{
+	border-bottom: 1px solid #BDBDBD;
+	width: 200px;
+	height: 30px;
+	padding: 10px;
+}
+.td-atregcontent{
+	width: 15%;
+}
+.modal-content{
+	margin: 0 auto;
+	width:1000px;
+	text-align:center;
+}
+.page-div{
+	margin: 0 auto;
+	text-align:center;
+}

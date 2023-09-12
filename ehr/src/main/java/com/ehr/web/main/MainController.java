@@ -126,6 +126,11 @@ public String join(@RequestParam(value="eimg",required = false) MultipartFile ei
 	System.out.println(map);
 	System.out.println(map.get("errn"));
 	System.out.println(map.get("errn2"));
+	String eemail = String.valueOf(map.get("eemail"))+"@ehr.net";
+	   map.put("eemail", eemail);
+	   
+	   String eaddr = String.valueOf(map.get("eaddr"))+"-"+ String.valueOf(map.get("eaddr_detail"));
+	   map.put("eaddr", eaddr);
 	String errn = String.valueOf(map.get("errn")) + String.valueOf(map.get("errn2"));
 	map.put("errn", errn);
 	if (!eimg.isEmpty()) {
@@ -228,12 +233,70 @@ public String findID() {
 public String findPW() {
 	return "findPW";
 }
-
-
-
-
-
+@GetMapping("/mypageupdate")
+public String mypageupdate(HttpSession session, Model model) {
+   if(session.getAttribute("eid") != null && session.getAttribute("eid") != "") {
+      String eid = String.valueOf(session.getAttribute("eid"));
+      Map<String, Object> result = mainService.login(eid);
+      System.out.println(result);
+    result.put("ehiredate", String.valueOf(result.get("ehiredate")).substring(0, 10)); 
+    result.put("ebirth", String.valueOf(result.get("ebirth")).substring(0, 10)); 
+      model.addAttribute("list", result);
+   }
+   return "mypageupdate";
 }
+
+@PostMapping("/mypageupdate")
+public String mypageupdate(HttpSession session, Model model, @RequestParam(value="eimg",required = false) MultipartFile eimg, @RequestParam Map<String, Object> map) {
+   System.out.println(map);
+   
+   if (!eimg.isEmpty()) {
+      // 저장할 경로명 뽑기 request뽑기
+      HttpServletRequest req = ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes())
+            .getRequest();
+      String path = req.getServletContext().getRealPath("/upload");
+      //System.out.println("=======================================================");
+      System.out.println("실제경로:" + path);
+      // upfile 정보 보기
+      System.out.println(eimg.getOriginalFilename());
+      //System.out.println(eimg.getSize());
+      //System.out.println(eimg.getContentType());
+      
+      LocalDateTime ldt = LocalDateTime.now();
+      String format = ldt.format(DateTimeFormatter.ofPattern("YYYYMMddHHmmss"));
+      String realFileName = format + eimg.getOriginalFilename();
+
+      File newFileName = new File(path, realFileName);
+      
+      try {
+      } catch (Exception e) {
+         e.printStackTrace();
+      }
+
+      try {
+         FileCopyUtils.copy(eimg.getBytes(), newFileName);
+      } catch (IOException e) {
+         e.printStackTrace();
+      }
+
+      System.out.println(realFileName);
+      map.put("realFile", realFileName);
+      model.addAttribute("realFile",realFileName);
+   }
+   
+   map.put("eid",session.getAttribute("eid"));
+   String eaddr = String.valueOf(map.get("eaddr"))+"-"+ String.valueOf(map.get("eaddr_detail"));
+   map.put("eaddr", eaddr);
+   mainService.mypageupdate(map);
+   
+   return "redirect:/mypage";
+}
+}
+
+
+
+
+
 //컨트롤러 끝
 
 

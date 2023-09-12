@@ -2,6 +2,29 @@
 <!DOCTYPE mapper
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.ehr.web.dao.AttendDAO">
-
+<mapper namespace="com.ehr.web.attend.AttendDAO">
+	<select id="attendList" parameterType="Map" resultType="com.ehr.web.attend.AttendDTO">
+		SELECT @ROWNUM:=@ROWNUM+1 AS rowNum, atregno, atregdate, atregrestdate, atregsts, atregacpt, atregcontent, ename, eno, edept, egrade 
+		FROM atregisterview, (SELECT @ROWNUM:=0) AS R WHERE eid = #{eid} ORDER BY rowNum DESC LIMIT #{offset}, #{pageSize}
+	</select>
+	
+	<insert id="atapplication" parameterType="com.ehr.web.attend.AttendDTO">
+		INSERT INTO atregister (atregrestdate, atregsts, atregacpt, atregcontent, eno) VALUES (#{atregrestdate}, #{atregsts}, 0, #{atregcontent}, (SELECT eno FROM employee WHERE eid = #{eid}))
+	</insert>
+	
+	<update id="atcancel" parameterType="Integer">
+		UPDATE atregister SET atregacpt = 2 WHERE atregno = #{atregno}
+	</update>
+	
+	<select id="attendView" parameterType="Integer" resultType="com.ehr.web.attend.AttendDTO">
+		SELECT atregno, atregdate, atregrestdate, atregsts, atregacpt, atregcontent, ename, eno, edept, egrade FROM atregisterview WHERE atregno = #{atregno}
+	</select>
+	
+	<update id="attendEdit" parameterType="Map">
+		UPDATE atregister SET atregrestdate = #{atregrestdate}, atregsts = #{atregsts}, atregcontent = #{atregcontent}, atregdate = (SELECT CURDATE()) WHERE eno = (SELECT eno FROM employee WHERE eid = #{eid}) AND atregno = #{atregno}
+	</update>
+	
+	<select id="getCount" parameterType="String" resultType="Integer">
+        SELECT count(*) FROM atregister WHERE eno = (SELECT eno FROM employee WHERE eid = #{eid})
+    </select>
 </mapper>

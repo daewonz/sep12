@@ -35,25 +35,7 @@ $(function(){
 		    			$(".pwbtn").show();
 		    			 
 		    			 
-		    			/* $("#msg2").append('<form action="./login" method="get">');
-		    			 $("#msg2").attr("method", "get");
-		    			 $("#msg2").attr("action", "./login");
-		    			 
-		    			 $("#msg2").append('<button type="submit" class="logbtn">로그인 하기</button>');
-		    			 $("#msg2").append("</form>");
-		    			 $("#msg2").append('<form action="./login" method="get">');
-		    			 $("#msg2").append("</form>");
-		    			 $("#msg2").append('<form action="./findPW" method="get">');
-		    			 $("#msg2").append("<button>비밀번호 찾기</button>");
-		    			 $("#msg2").append("</form>"); */
-						/* 	
-		    			 $(document).on("click", ".logbtn", function(){
-		    				 let logbtn = $(".logbtn").
-		    				 
-		    			 }) */
-		    			 
-		    			  //$(this).parent().parent().parent().remove();
-		    			  //cno_comments.remove(); //변수에 담긴 html 삭제
+		    			
 		    		  }else{
 		    			  alert("입력하신 이메일로 회원가입 되어있는 계정이 없습니다. 다시 확인해주세요.");
 		    		  }
@@ -84,8 +66,7 @@ $(function(){
 		사내 이메일을 입력해주세요.
 		<div class="zzz">
 		이름 : <input type="text" class="findID" name="name" placeholder="이름을 입력해주세요"><br>
-		이메일 앞 아이디 : <input type="text" class="findID" name="findID" placeholder="이메일 앞 아이디를 입력해주세요">
-
+		주민등록번호 : <input type="text" class="errn" name="errn" placeholder=""> - <input type="password" class="errn2" name="errn2" placeholder="">
 		<div>
 		<button type="submit" class="fbtn">아이디 찾기</button>
 			<br>

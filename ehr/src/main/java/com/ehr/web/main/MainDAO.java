@@ -32,4 +32,8 @@ public interface MainDAO {
 
 	List<Map<String, Object>> newMember();
 
+	void mypageupdate(Map<String, Object> map);
+
+	
+
 }

@@ -64,5 +64,14 @@ WHERE eid = #{id}
 	DESC
 	LIMIT 0,2
 	</select>
-
+<update id="mypageupdate" parameterType="Map" >
+      UPDATE employee
+      SET 
+      <if test="realFile != null">
+      eimg=#{realFile},
+      </if>
+      ephoneno=#{ephoneno},
+      eaddr=#{eaddr}
+      WHERE eid=#{eid}
+   </update>
 </mapper>

@@ -69,5 +69,10 @@ public List<Map<String, Object>> newMember() {
 	return mainDAO.newMember();
 }
 
+public void mypageupdate(Map<String, Object> map) {
+	 mainDAO.mypageupdate(map);
+	
+}
+
 
 }

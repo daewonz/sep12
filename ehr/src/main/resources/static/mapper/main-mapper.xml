@@ -74,4 +74,9 @@ WHERE eid = #{id}
       eaddr=#{eaddr}
       WHERE eid=#{eid}
    </update>
+   <select id="findID" parameterType="Map" resultType="Map">
+   select eid, ename
+   from employee
+   where errn =#{errn} AND ename=#{ename}
+   </select>
 </mapper>

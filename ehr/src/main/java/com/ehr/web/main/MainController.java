@@ -291,13 +291,21 @@ public String mypageupdate(HttpSession session, Model model, @RequestParam(value
    
    return "redirect:/mypage";
 }
+
+//2023-09-12 추가
+@ResponseBody
+@PostMapping("/findID")
+public String findID(@RequestParam Map<String, Object> map) {
+	JSONObject json = new JSONObject();
+	System.out.println(map);
+	Map<String, Object> result =  mainService.findID(map);
+	System.out.println(result);
+	json.put("result", result);
+	return json.toString();
 }
 
 
-
-
-
-//컨트롤러 끝
+} //컨트롤러 끝
 
 
 

@@ -153,10 +153,7 @@ $(function(){
 			
 	});//로그인 버튼 클릭
 	
-	$(".findID").click(function(){
-		alert("모달아 열려라");
-		$("#myModal").modal("show");
-	});
+	
 });
 
 //setCookie()
@@ -192,6 +189,58 @@ function getCookie(cookieName){
 	}
 }
 </script>
+<script type="text/javascript">
+$(function(){
+	$(".findID").click(function(){
+		alert("모달아 열려라");
+		$("#myModal").modal("show");
+	});
+	
+	$(".fbtn").click(function(){
+		let ename = $(".ename").val();
+		
+		let errn1 = $(".errn").val();
+		let errn2 = $(".errn2").val();
+		let errn = errn1+'-'+errn2;
+		
+		
+		if(errn1.length != 6){
+			alert("주민등록번호 앞자리는 6자리입니다.");
+			$(".errnInfo").css("color","red");
+			$(".errnInfo").text("올바른 주민등록번호를 입력해주세요");	
+			return false;
+		}
+		if(errn2.length != 7){
+			alert("주민등록번호 뒷자리는 7자리입니다.");
+			$(".errnInfo").css("color","red");
+			$(".errnInfo").text("올바른 주민등록번호를 입력해주세요");		
+			return false;
+		}
+		
+		$.ajax({
+			
+			url : "/findID",
+			type : "post",
+			data : {ename : ename, errn : errn},
+			dataType : "json",
+			success : function(data){
+				if(data.result.ename != null){
+					
+				alert(data.result.ename);
+				alert(data.result.eid);
+				}else{
+					alert("입력하신 정보와 일치하는 사번이 없습니다. 다시 확인해주세요.");
+				}
+			},
+			error : function(){
+				alert("ㅠㅠ");
+			}
+		});
+		
+		
+	});
+});
+</script>
 <link rel="stylesheet" href="../css/login.css">
 </head>
 <body>
@@ -204,7 +253,7 @@ function getCookie(cookieName){
                <div class="signin_swiper" id="otp">
                   <div class="signin-section">
                      <div>
-                     <img alt="" src="./img/logo.png"><br>
+                     <img alt="" src="./img/login.png"><br>
                         <h2 class="signin_title">로그인</h2>
                         <div class="signin-section">
                            <input type="text" id="signin_id" class="signin_id" name="eid" placeholder="사번"><br><br>
@@ -233,18 +282,23 @@ function getCookie(cookieName){
     <div class="modal-dialog modal-lg" >
         <div class="modal-content">
             <div class="header">
-                <h5 class="title" id="exampleModalLabel"></h5>
+                <h1 class="title" id="exampleModalLabel">아이디 찾기</h1>
             </div>
             <div class="checkID">
-                <div class="detail-detail">
-                    		<div>
+   		<div class="">
 		<form action="./findID" method="post"></form>
-		계정을 만드실 때 사용하셨던 이메일을 입력해주세요.
+		<h4 style="text-align: center;">이름과 생년월일을 입력해주세요.</h4>
+		
 		<div class="zzz">
-		<input type="text" class="checkID" name="checkID" placeholder="이메일을 입력해주세요">
-
-		<div>
+		<h5>이름</h5><br>
+		<input type="text" class="ename" name="ename" placeholder="이름을 입력해주세요."><br><br><br><br>
+		<h5>주민등록번호</h5><br>
+		<input type="text" class="errn" name="errn" maxlength="6">-<input type="text" class="errn2" name="errn2" maxlength="7"><br>
+		<span class="errnInfo"></span>
+		<br><br><br><br>
+		<div class="findIDBtn">
 		<button type="submit" class="fbtn">아이디 찾기</button>
+		</div>
 			<br>
 			<span id="msg"></span>
 				<span id="msg2"></span>
@@ -257,8 +311,52 @@ function getCookie(cookieName){
 			</form>
 		</div>
 		</div>
+            </div>
+            <div style="text-align: center;">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">닫기</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<div class="modal" id="modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+    <!-- 모달 내용 -->
+    <div class="modal-dialog modal-lg" >
+        <div class="modal-content">
+            <div class="header">
+                <h1 class="title" id="exampleModalLabel">비밀번호 찾기</h1>
+            </div>
+            <div class="checkID">
+   		<div class="">
+		<form action="./findID" method="post"></form>
+		<h4 style="text-align: center;">이름과 생년월일을 입력해주세요.</h4>
+		
+		<div class="zzz">
+		<h5>이름</h5><br>
+		<input type="text" class="ename" name="ename" placeholder="이름을 입력해주세요."><br><br><br><br>
+		<h5>주민등록번호</h5><br>
+		<input type="text" class="errn" name="errn" maxlength="6">-<input type="text" class="errn2" name="errn2" maxlength="7"><br>
+		<span class="errnInfo"></span>
+		<br><br><br><br>
+		<div class="findIDBtn">
+		<button type="submit" class="fbtn">아이디 찾기</button>
 		</div>
-                </div>
+			<br>
+			<span id="msg"></span>
+				<span id="msg2"></span>
+			<br>
+			<form action="./login" method="get">
+				<button type="submit" class="logbtn">로그인 하기</button>
+			</form>
+			<form action="./findPW" method="get">
+				<button type="submit" class="pwbtn">비밀번호 찾기</button>
+			</form>
+		</div>
+		</div>
             </div>
             <div style="text-align: center;">
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">닫기</button>

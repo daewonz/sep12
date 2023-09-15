@@ -74,5 +74,10 @@ public void mypageupdate(Map<String, Object> map) {
 	
 }
 
+public Map<String, Object> findID(Map<String, Object> map) {
+	// TODO Auto-generated method stub
+	return mainDAO.findID(map);
+}
+
 
 }

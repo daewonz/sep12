@@ -34,6 +34,8 @@ public interface MainDAO {
 
 	void mypageupdate(Map<String, Object> map);
 
+	Map<String, Object> findID(Map<String, Object> map);
+
 	
 
 }

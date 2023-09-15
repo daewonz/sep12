@@ -1,13 +1,53 @@
 @charset "UTF-8";
 
 element.style {
+}
+	/* 모달 부분입니다. */
+.modal{
+	border-radius: 50px;
 	
 }
+	
 .modal-content{
-	height: 870px;
+	   position: relative;
+   top: 150px;
+   width: 700px;
+   border: 1px solid #C6C6C6;
+   border-radius: 5px;
+   margin: auto; /*중앙 정렬*/
+   padding: 0 20px;
+   margin-bottom: 20px;
 	
 	
 }
+.title{
+	text-align: center;
+}
+.zzz{
+	margin: 120px;
+    height: 400px;
+}
+.findIDBtn{
+	text-align: center;
+	
+}
+.fbtn{
+	border : 3px;
+	margin:auto;
+	height : 30px;
+	width : 100px;
+	color: white;
+	background-color: black;
+	
+	text-align: center;
+	vertical-align : middle;
+}
+.checkID{
+	
+	border: 3px solid black;
+	border-radius: 50px;
+}
+/* 모달 끝입니다. */
 .nav_container {
 	position: relative;
 	display: flex;
